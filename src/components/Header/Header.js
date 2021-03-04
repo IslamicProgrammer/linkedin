@@ -9,22 +9,24 @@ import TextsmsIcon from '@material-ui/icons/Textsms';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../features/userSlice';
+import { logout, selectUser } from '../../features/userSlice';
+import { auth } from '../../firebase/firebase';
 
 const Header = () => {
   const [openSub, setOpenSub] = useState(false);
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector(selectUser);
 
   const logOutHandler = () => {
     dispatch(logout());
     setOpenSub(false);
+    auth.signOut();
   };
 
   return (
     <div className="header">
-      {user.user ? (
+      {user ? (
         <>
           <div className="header__left">
             <svg
@@ -55,20 +57,23 @@ const Header = () => {
             <HeaderOption Icon={TextsmsIcon} title="Messages" />
             <HeaderOption Icon={NotificationsIcon} title="Notifications" />
             <HeaderOption
+              avatar={user.photoUrl}
               openSub={openSub}
               setOpenSub={setOpenSub}
-              avatar="HELLO"
-              title="me"
+              avatar={true}
             />
-
-            <div
-              onClick={logOutHandler}
-              style={openSub ? { display: 'block' } : { display: 'none' }}
-              className="avatar__submenu"
-            >
-              <span>Log out</span>
-              <ExitToAppIcon />
-            </div>
+            {openSub ? (
+              <div
+                onClick={logOutHandler}
+                style={openSub ? { display: 'block' } : { display: 'none' }}
+                className="avatar__submenu"
+              >
+                <span>Log out</span>
+                <ExitToAppIcon />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </>
       ) : (

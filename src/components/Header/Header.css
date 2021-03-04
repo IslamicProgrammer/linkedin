@@ -48,7 +48,7 @@
   bottom: -50px;
   right: -40px;
   padding: 10px;
-  display: flex;
+  display: flex !important;
   border-radius: 5px;
   background: white;
   border: 1px solid lightgray;
@@ -59,4 +59,10 @@
   padding: 0 !important;
   display: inline-block;
   line-height: 20px;
+}
+
+.avatar__submenu > svg {
+  color: #444;
+  font-size: 22px;
+  margin-left: 5px;
 }

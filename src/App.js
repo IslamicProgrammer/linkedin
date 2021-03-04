@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+
+import Widgets from './components/Widgets/Widgets';
 import Feed from './components/Feed/Feed';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Sidebar from './components/Sidebar/Sidebar';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from './features/userSlice';
 import { auth } from './firebase/firebase';
 
@@ -21,7 +24,7 @@ function App() {
           login({
             email: userAuth.email,
             uid: userAuth.uid,
-            dispayName: userAuth.displayName,
+            displayName: userAuth.displayName,
             photoUrl: userAuth.photoURL,
           })
         );
@@ -39,6 +42,7 @@ function App() {
         <div className="app__body">
           <Sidebar />
           <Feed />
+          <Widgets />
         </div>
       ) : (
         <Login />

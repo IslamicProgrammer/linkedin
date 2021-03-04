@@ -8,6 +8,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
+import FlipMove from 'react-flip-move';
 import Post from '../Post/Post';
 
 import { db } from '../../firebase/firebase';
@@ -37,10 +38,10 @@ const Feed = () => {
     e.preventDefault();
 
     db.collection('posts').add({
-      name: 'Azamov Murojon',
-      description: 'Test for firebase',
+      name: user.displayName,
+      description: user.email,
       message: input,
-      photoUrl: '',
+      photoUrl: user.photoUrl || '',
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -74,15 +75,17 @@ const Feed = () => {
           />
         </div>
       </div>
-      {posts.map(({ id, data: { name, message, description, photoUrl } }) => (
-        <Post
-          key={id}
-          message={message}
-          name={name}
-          description={description}
-          photoUrl={photoUrl}
-        />
-      ))}
+      <FlipMove>
+        {posts.map(({ id, data: { name, message, description, photoUrl } }) => (
+          <Post
+            key={id}
+            message={message}
+            name={name}
+            description={description}
+            photoUrl={photoUrl}
+          />
+        ))}
+      </FlipMove>
     </div>
   );
 };

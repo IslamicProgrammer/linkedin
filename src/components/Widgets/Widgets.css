@@ -1,0 +1,58 @@
+.widgets {
+  position: sticky !important;
+  top: 80px;
+  flex: 0.2;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  height: fit-content;
+  padding-bottom: 10px;
+}
+
+.widgets__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.widgets__header > h2 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.widgets__header > svg {
+  font-size: 16px;
+}
+
+.widgets__article {
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+}
+
+.widgets__article:hover {
+  background: whitesmoke;
+}
+
+.widget__articleLeft {
+  color: #0177b7;
+  margin-right: 5px;
+}
+
+.widget__articleLeft > svg {
+  font-size: 15px;
+}
+
+.widget__articleRight {
+  flex: 1;
+}
+
+.widget__articleRight > h4 {
+  font-size: 14px;
+}
+
+.widget__articleRight > p {
+  font-size: 12px;
+  color: gray;
+}
